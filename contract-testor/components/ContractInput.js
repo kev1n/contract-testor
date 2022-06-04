@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
-export default function Input(props) {
+export default function CInput(props) {
 
     const handleChange = (e) => {
         props.onAddressChange(e.target.value);
@@ -12,8 +12,8 @@ export default function Input(props) {
             <label>Contract address:</label>
             <input type="text"
                     name="contract"
-                    value = {props.address}
                     onChange = {handleChange}
+                    style={{width: "100%"}}
                     />
         </>
     )

@@ -1,11 +1,19 @@
 import styles from "../styles/Form.module.css";
 import CInput from "./ContractInput.js";
+import AInput from "./ABIInput.js"
+
 import {useState} from 'react';
 
 export default function Form() {
     const [address, setAddress] = useState("");
+    const [abi, setAbi] = useState("");
+
     const handleAddressChange = (addy) => {
         setAddress(addy);
+    }
+
+    const handleABIChange = (ABI) => {
+        setAbi(ABI);
     }
 
     return (
@@ -13,8 +21,9 @@ export default function Form() {
             <CInput
                 onAddressChange = {handleAddressChange}
             />
-            <label >ABI:</label>
-            <textarea type="text" name="abi" className={styles.input} style={{ height: "90%", resize: "none"}}/>
+            <AInput
+                onABIChange = {handleABIChange}
+            />
         </div>
     )
 }
