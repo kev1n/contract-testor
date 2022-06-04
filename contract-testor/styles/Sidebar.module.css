@@ -1,5 +1,12 @@
 .container {
     background-color: #5EBEC4;
-    width: 500px;
+    width: 200px;
     height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.centered {
+    height: 90%;
+    width: 80%;
 }

@@ -1,0 +1,11 @@
+.container, .form {
+    height: 100%;
+}
+
+.abi {
+    height: 90%;
+}
+
+.input {
+    width: 100%;
+}
