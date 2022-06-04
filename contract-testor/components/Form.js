@@ -1,15 +1,20 @@
-import styles from "../styles/Form.module.css"
+import styles from "../styles/Form.module.css";
+import CInput from "./ContractInput.js";
+import {useState} from 'react';
 
 export default function Form() {
+    const [address, setAddress] = useState("");
+    const handleAddressChange = (addy) => {
+        setAddress(addy);
+    }
+
     return (
         <div className={styles.container}>
-            
-            <label for="contract" >Contract Address:</label>
-            <input type="text" name="contract" className={styles.input}/>
-            <label for="abi">ABI:</label>
+            <CInput
+                onAddressChange = {handleAddressChange}
+            />
+            <label >ABI:</label>
             <textarea type="text" name="abi" className={styles.input} style={{ height: "90%", resize: "none"}}/>
-
-
         </div>
     )
 }
