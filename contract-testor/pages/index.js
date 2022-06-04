@@ -5,11 +5,13 @@ import Sidebar from '../components/Sidebar'
 import Main from '../components/Main.js'
 
 import { useEffect, useState } from 'react'
+import { ethers } from "ethers";
 
 export default function Home() {
 
   const [ABI, setABI] = useState("");
   const [address, setAddress] = useState("");
+
 
   useEffect(() => { //testing to see if it works
     //console.log(ABI, address)
