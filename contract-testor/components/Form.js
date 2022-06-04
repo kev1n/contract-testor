@@ -2,18 +2,13 @@ import styles from "../styles/Form.module.css";
 import CInput from "./ContractInput.js";
 import AInput from "./ABIInput.js"
 
-import {useState} from 'react';
-
-export default function Form() {
-    const [address, setAddress] = useState("");
-    const [abi, setAbi] = useState("");
-
+export default function Form(props) {
     const handleAddressChange = (addy) => {
-        setAddress(addy);
+        props.liftAddress(addy);
     }
 
     const handleABIChange = (ABI) => {
-        setAbi(ABI);
+        props.liftABI(ABI);
     }
 
     return (

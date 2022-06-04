@@ -2,8 +2,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Sidebar from '../components/Sidebar'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+
+  const [ABI, setABI] = useState("");
+  const [address, setAddress] = useState("");
+
+  useEffect(() => { //testing to see if it works
+    console.log(ABI)
+  }, [ABI])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +22,10 @@ export default function Home() {
       </Head>
 
 
-      <Sidebar></Sidebar>
+      <Sidebar
+        changeAddress = {setAddress} //calls setAddress(addy)
+        changeABI = {setABI} //calls setABI(ABI)
+      />
 
     </div>
   )
