@@ -11,13 +11,18 @@ export default function Sidebar(props) {
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.centered}>
-                <Form
-                    liftABI = {liftABI}
-                    liftAddress = {liftAddress}
-                />
+        <>
+            <div className={styles.container}>
+                <div className={styles.centered}>
+                    <Form
+                        liftABI = {liftABI}
+                        liftAddress = {liftAddress}
+                    />
+                </div>
+
+                
+
             </div>
-        </div>
+        </>
     )
 }
