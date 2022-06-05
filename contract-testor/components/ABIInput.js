@@ -5,7 +5,7 @@ export default function AInput(props) {
     const handleChange = (e) => {
         props.onABIChange(e.target.value);
     }
-
+    
     return (
         <>
             <label >ABI:</label>

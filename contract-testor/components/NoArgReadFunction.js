@@ -1,16 +1,33 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import styles from "../styles/Functions.module.css";
 
 export default function NoArgReadFunction(props) {
-    console.log(
-        props.ABI
-    )
+    const contract = props.contract;
+    const [data, setData] = useState();
 
 
+    useEffect(() => {
+        getData();
+
+    }, [])
+
+    const getData = async () => {
+        try {
+            console.log(contract)
+            console.log(contract)
+            const d = await contract[props.ABI.name]();
+            setData(d.toString())
+        } catch (e) {
+            console.log(e, props.ABI.name)
+        }
+
+    }
     return (
         <>
-            <div>
+            <div className={styles.container}>
                 {props.ABI.name}
+                <br/>
+                {data}
             </div>
         </>
     )
