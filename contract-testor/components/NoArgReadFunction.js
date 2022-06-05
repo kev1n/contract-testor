@@ -13,8 +13,6 @@ export default function NoArgReadFunction(props) {
 
     const getData = async () => {
         try {
-            console.log(contract)
-            console.log(contract)
             const d = await contract[props.ABI.name]();
             setData(d.toString())
         } catch (e) {
