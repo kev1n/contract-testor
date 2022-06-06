@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import NoArgReadFunction from "./NoArgReadFunction";
+import NoArgReadFunction from "./NoArgReadFunction.js";
+import ArgReadFunction from "./ArgReadFunction.js"
 import {ethers} from 'ethers';
 
 let readNoArguments = [];
@@ -121,6 +122,9 @@ export default function Main(props) {
                 <div>
                     {readNoArguments.map((abi, n) => 
                         <NoArgReadFunction key={n} ABI={abi} contract = {contract}/>
+                    )}
+                    {readYesArguments.map((abi, n) => 
+                        <ArgReadFunction key={n} ABI={abi} contract = {contract}/>
                     )}
                 </div>
             </>
