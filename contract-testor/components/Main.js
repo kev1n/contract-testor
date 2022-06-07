@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import NoArgReadFunction from "./NoArgReadFunction.js";
 import ArgReadFunction from "./ArgReadFunction.js"
 import {ethers} from 'ethers';
+import AnyArgWriteFunction from "./AnyArgWriteFunction.js";
 
 let readNoArguments = [];
 let readYesArguments = [];
-
+let writeAnyArgs = [];
 export default function Main(props) {
     const contractInfo = props.abi;
     const caddress = props.addy;
@@ -82,17 +83,20 @@ export default function Main(props) {
         try {
             const tempNoArgs = [];
             const tempYesArgs = [];
+            const tempWrite = [];
             for (let i = 0; i < ABIJSON.length; i++) {
                 let abi = ABIJSON[i]
                 
                 if (abi["type"] == "function") {
-                    //console.log(abi)
+                    console.log(abi)
                     if (abi["stateMutability"] == "view") {
                         if (abi["inputs"].length == 0) {
                             tempNoArgs.push(abi);
                         } else {
                             tempYesArgs.push(abi);
                         }
+                    } else if (abi["stateMutability"] == "payable" || abi["stateMutability"] == "nonpayable") {
+                        tempWrite.push(abi);
                     }
                 }
                 
@@ -100,6 +104,7 @@ export default function Main(props) {
 
             readNoArguments = tempNoArgs;
             readYesArguments = tempYesArgs;
+            writeAnyArgs = tempWrite;
         } catch (e) {
             console.log(e);
         }
@@ -125,6 +130,9 @@ export default function Main(props) {
                     )}
                     {readYesArguments.map((abi, n) => 
                         <ArgReadFunction key={n} ABI={abi} contract = {contract}/>
+                    )}
+                    {writeAnyArgs.map((abi, n) => 
+                        <AnyArgWriteFunction key={n} ABI={abi} contract = {contract}/>
                     )}
                 </div>
             </>
