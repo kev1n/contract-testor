@@ -3,6 +3,7 @@ import NoArgReadFunction from "./NoArgReadFunction.js";
 import ArgReadFunction from "./ArgReadFunction.js"
 import {ethers} from 'ethers';
 import AnyArgWriteFunction from "./AnyArgWriteFunction.js";
+import styles from "../styles/Main.module.css"
 
 let readNoArguments = [];
 let readYesArguments = [];
@@ -121,6 +122,7 @@ export default function Main(props) {
     
     return (
         <>
+            <div className={styles.container}>
             {!account &&
             <button onClick={connectWallet}>
                 Connect Wallet
@@ -130,9 +132,12 @@ export default function Main(props) {
 
             <>
                 <div>
-                    {readNoArguments.map((abi, n) => 
-                        <NoArgReadFunction key={n} ABI={abi} contract = {contract} reRender = {render}/>
-                    )}
+                    <div className={styles.topSection}>
+                        {readNoArguments.map((abi, n) => 
+                            <NoArgReadFunction key={n} ABI={abi} contract = {contract} reRender = {render}/>
+                        )}
+                    </div>
+                    
                     {readYesArguments.map((abi, n) => 
                         <ArgReadFunction key={n} ABI={abi} contract = {contract}/>
                     )}
@@ -142,6 +147,8 @@ export default function Main(props) {
                 </div>
             </>
             }
+            </div>
+            
 
 
             

@@ -1,0 +1,10 @@
+.container {
+    width: 60%;
+}
+
+.topSection {
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
