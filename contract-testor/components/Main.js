@@ -20,6 +20,8 @@ export default function Main(props) {
     const [account, setAccount] = useState("");
     const [contract, setContract] = useState({});
     const [ABIJSON, setABIJSON] = useState({});
+
+
     useEffect(() => {
         ethereum = window.ethereum;
 
@@ -111,7 +113,10 @@ export default function Main(props) {
 
     }
 
-    
+    const [render, setRender] = useState({});
+    const reRenderNoArgs = (e) => {
+        setRender(e)
+    }
        
     
     return (
@@ -126,13 +131,13 @@ export default function Main(props) {
             <>
                 <div>
                     {readNoArguments.map((abi, n) => 
-                        <NoArgReadFunction key={n} ABI={abi} contract = {contract}/>
+                        <NoArgReadFunction key={n} ABI={abi} contract = {contract} reRender = {render}/>
                     )}
                     {readYesArguments.map((abi, n) => 
                         <ArgReadFunction key={n} ABI={abi} contract = {contract}/>
                     )}
                     {writeAnyArgs.map((abi, n) => 
-                        <AnyArgWriteFunction key={n} ABI={abi} contract = {contract}/>
+                        <AnyArgWriteFunction key={n} ABI={abi} contract = {contract} onBCStateChanged = {reRenderNoArgs}/>
                     )}
                 </div>
             </>

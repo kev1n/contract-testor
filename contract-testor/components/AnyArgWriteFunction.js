@@ -42,6 +42,8 @@ export default function AnyArgWriteFunction(props) {
 
             await txn.wait();
 
+            props.onBCStateChanged(newurl); //hacky solution, just need a unique value
+
             link = <a href={newurl} style={{"color": "green"}} target="_blank">{newurl}</a>
             setData(link);
         } catch (e) {

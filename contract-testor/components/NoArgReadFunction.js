@@ -9,9 +9,10 @@ export default function NoArgReadFunction(props) {
     useEffect(() => {
         getData();
 
-    }, [])
+    }, [props.reRender])
 
     const getData = async () => {
+        setData("Loading...")
         try {
             const d = await contract[props.ABI.name]();
             setData(d.toString())
