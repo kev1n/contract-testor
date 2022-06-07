@@ -6,22 +6,34 @@ export default function ArgReadFunction(props) {
     //console.log(props.ABI)
     //console.log(props.ABI.inputs[0]['type'])
     const contract = props.contract;
-    const args = Array(props.ABI.inputs.length).fill(""); // create a list with the same number of arguments
+    const [args, setArgs] = useState(Array(props.ABI.inputs.length));
     const [data, setData] = useState();
+
     const handleQueryChange = (val) => {
+        console.log(val)
         const index = val[0];
         const result = val[1];
 
-        args[index] = result;
+        update(index, result)
     }
+    function update(index, newValue) {
+        // shallow copy
+        const newArray = [...args];
+        // mutate copy
+        newArray[index] = newValue;
+        // set state
+        setArgs(newArray);
+      }
 
     const query = async () => {
+        setData("Loading...")
         try {
-            setData("Loading...")
+            console.log(args)
             const d = await contract[props.ABI.name].apply(this, args);
-            setData(d.toString())
+            setData(<p style={{"color": "green"}}>{d.toString()}</p>)
         } catch (e) {
             setData(e.toString());
+            setData(<p style={{"color": "red"}}>{e.toString()}</p>)
         }
     }
     return (
@@ -36,7 +48,9 @@ export default function ArgReadFunction(props) {
                    <Query key={n} index={n} name={obt["name"]} type = {obt['type']} onQueryChange = {handleQueryChange}/> 
                 )}
                 <button onClick={() => query()}>Query</button>
-                <p>{data}</p>
+                <br/>
+
+                {data}
             </div>
 
         </>
